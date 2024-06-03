@@ -28,7 +28,7 @@ export const Login = () => {
   const login = () => {
     const user = { email, APIKey }
 
-    const isValidEmail = checkEmailFormat()
+    const isValidEmail = checkEmailFormat(email)
 
     if (!isValidEmail) return
 
