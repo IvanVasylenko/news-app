@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { hideNotification, showNotification } from '../../store/slices/commonSlice'
 import { setUserData, userSelector } from '../../store/slices/userSlice'
+
+import { useTemporaryNotification } from '../../helpers/useTemporaryNotification'
 
 import { AppLayout } from '../AppLayout'
 import { CustomButton } from '../Button'
@@ -12,6 +13,7 @@ import { ProfileContainer, ProfileTitle } from '../../styles/ProfileStyles'
 
 export const Profile = () => {
   const dispatch = useDispatch()
+  const { showNotificationMessage } = useTemporaryNotification()
 
   const { data: user } = useSelector(userSelector)
 
@@ -19,13 +21,6 @@ export const Profile = () => {
   const [email, setEmail] = useState(user.email)
   const [APIKey, setAPIKey] = useState(user.APIKey)
   const [isDisabled, setIsDisabled] = useState(true)
-
-  const showTemporaryNotification = message => {
-    dispatch(showNotification(message))
-    setTimeout(() => {
-      dispatch(hideNotification())
-    }, 3000)
-  }
 
   useEffect(() => {
     if (name !== user.name || email !== user.email || APIKey !== user.APIKey) {
@@ -43,7 +38,7 @@ export const Profile = () => {
     }
 
     dispatch(setUserData(userData))
-    showTemporaryNotification('Saved')
+    showNotificationMessage('Saved')
   }
 
   return (

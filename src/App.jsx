@@ -8,7 +8,7 @@ import { Login } from './components/Login'
 import { Main } from './components/Main'
 import { Profile } from './components/Profile'
 import { Story } from './components/Story'
-import { NotFound } from './components/AppLayout/NotFound'
+import { NotFound } from './components/Shared/NotFound'
 import { ProtectedRoute } from './components/ProtectedRoute'
 
 const App = () => {

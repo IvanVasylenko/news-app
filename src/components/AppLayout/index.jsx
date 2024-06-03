@@ -5,8 +5,8 @@ import { commonSelector } from '../../store/slices/commonSlice'
 
 import { Header } from './Header'
 import { Footer } from './Footer'
-import { Loading } from './Loading'
-import { Notification } from './Notification'
+import { Loading } from '../Shared/Loading'
+import { Notification } from '../Shared/Notification'
 
 import { AppContainer, Main } from '../../styles/CommonStyles'
 

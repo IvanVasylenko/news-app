@@ -2,12 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import {
-  disableLoading,
-  enableLoading,
-  hideNotification,
-  showNotification,
-} from '../../store/slices/commonSlice'
+import { disableLoading, enableLoading } from '../../store/slices/commonSlice'
+
+import { useTemporaryNotification } from '../../helpers/useTemporaryNotification'
 
 import { getTopNews } from '../../api'
 
@@ -20,15 +17,9 @@ import { MainContainer, MainTitle, MainTitleContainer } from '../../styles/MainS
 
 export const Main = () => {
   const dispatch = useDispatch()
+  const { showNotificationMessage } = useTemporaryNotification()
 
   const [newsList, setNewsList] = useState([])
-
-  const showTemporaryNotification = message => {
-    dispatch(showNotification(message))
-    setTimeout(() => {
-      dispatch(hideNotification())
-    }, 3000)
-  }
 
   const getNewsList = async search => {
     dispatch(enableLoading())
@@ -36,9 +27,9 @@ export const Main = () => {
     const response = await getTopNews(search)
 
     if (response.data.status === 'error' || response.data.code === 'apiKeyInvalid') {
-      showTemporaryNotification('Invalid API Key')
+      showNotificationMessage('Invalid API Key')
     } else if (response.data.status === 'error') {
-      showTemporaryNotification('Network error')
+      showNotificationMessage('Network error')
     } else {
       setNewsList(response.data.articles)
     }
