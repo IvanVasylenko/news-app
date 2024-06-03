@@ -2,7 +2,7 @@
   "name": "news-app",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://ivanvasylenko.github.io/news-app",
+  "homepage": "https://ivanvasylenko.github.io/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.3",
